@@ -1,3 +1,9 @@
+
+
+APIKEY:65d7555627d9a3bc1d7ac4af.mockapi.io/api/adverts/:endpoint
+
+
+
 # React homework template
 
 Цей проект був створений за допомогою
