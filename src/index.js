@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { App } from './App';
+import { App } from './components/App';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyle } from 'GlobalStyles';
+import { GlobalStyle } from 'components/GlobalStyles';
 import { Provider } from 'react-redux';
 import { persistor, store } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { BrowserRouter } from 'react-router-dom';
 
 // import './index.css';
 
@@ -27,6 +28,7 @@ const theme = {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <BrowserRouter  basename='move-ease' >
     <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
     <ThemeProvider theme={theme}>
@@ -35,5 +37,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </ThemeProvider>
     </PersistGate>
     </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );

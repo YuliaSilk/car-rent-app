@@ -49,7 +49,7 @@ export const Layout = () => {
              <nav>
                  <Link to="/">Home</Link>
                 <Link to="/catalog">Catalog</Link>
-                <Link to="/favorite">Favorite</Link>
+                {/* <Link to="/favorites">Favorite</Link> */}
 
              </nav>
             </HeaderStyle>
