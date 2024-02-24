@@ -1,26 +1,40 @@
-import { CarsCard } from "components/CarsCard/CarsCard";
 import React from "react";
 import { useEffect } from "react"; 
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch} from "react-redux";
 import { fetchAdverts } from "./redux/cars/operations";
-import { selectAdverts } from "./redux/cars/selectors";
+import { CarsList } from "components/CarsList/CarsList";
+import { Route, Routes } from "react-router-dom";
+import { Layout } from "components/Layout";
+import Home from "pages/Home";
+import { Catalog } from "pages/Catalog/Catalog";
+// import Catalog from "./pages";
+// import Favorite from "pages/Favorite";
 
-
+// const [currentPage, setCurrentPage] = React.useState(1);
 
 export const App = () => {
+  
+  
 
-  const adverts = useSelector(selectAdverts);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchAdverts())
+    dispatch(fetchAdverts({ page:1, limit:12 }))
   }, [dispatch])
 
   return (
-    <div>
-  {adverts.map((advert) => (
-        <CarsCard key={advert.id} advert={advert} />
-      ))}
+    <Routes>
+      <Route path="/" element={<Layout/>}/>
+      <Route index path="/" element={<Home/>}/>
+      <Route path="/catalog" element={<Catalog/>}/>
+      {/* <Route path="/favorites" element={<Favorite/>}/> */}
+      <Route path="*" element={<Home />}/>
 
-    </div>
+    </Routes>
+
   );
 };
+
+<div>
+  
+<CarsList/>
+    </div>

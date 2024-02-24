@@ -1,47 +1,62 @@
-import React from "react";
-import { CardContainer } from "./CarsCard.styled";
+import React, { useState } from "react";
+import Modal from 'react-modal';
+import { CarImg, CardContainer, ImgContainer, CarTitle, CarDescription, DescriptionContainer, LearnMoreBtn, TitleContainer, FavBtn, HeartSvg } from "./CarsCard.styled";
+import { AdvertDetailsModal } from "components/Modal/AdvertDetailsModal";
 
-export const CarsCard = ({ advert }) => 
-        { const {
-          id,
-           img,
-           year,
-           make,
-           price,
-           city,
-           country,
-           rentalCompany,
-           carClass,
-           type,
-           model,
-           functionalities,
-         } = advert; 
+// export const CarsCard = ({ advert: { id, img, year, make, rentalPrice, city, country, rentalCompany, carClass, type, model, functionalities } }) => {
+     
+
+//          const [isModalOpen, setIsModalOpen] = useState(false);
+export const CarsCard = ({ advert: initialAdvert }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [advert, setAdvert] = useState(initialAdvert);
+
+         const openModal = () => {
+          setIsModalOpen(true);
+        };
+      
+        const closeModal = () => {
+          setIsModalOpen(false);
+        };
+      
+
  return (
     <CardContainer>
-        <div>
-        <image src={img} alt={`${make} ${model}`}/>
-        <button type="button">
-            <span><svg>
-                </svg></span>
-        </button>
-        </div>
-        <div>
-            <div>
-             <h2>{make}, {model}, {year}</h2>  
-            </div>
+        <ImgContainer>
+        <CarImg src={advert.img} alt={advert.model}  />
+        <FavBtn type="button">
             
+            <HeartSvg />
+              {/* <use xlinkHref={`${sprite}#close`}></use> */}
+           
+        </FavBtn>
+        </ImgContainer>
+        <TitleContainer>
             <div>
-              <h2>{price}</h2>  
+             <CarTitle>{advert.make}  <span>{advert.model}</span>,  {advert.year}</CarTitle>  
             </div>
-        </div>
-        <div>
-            <p> {city} | {country} | {rentalCompany} | {carClass} | {type} | {model} | {id} | {functionalities} </p>
+            <div>
+              <CarTitle>{advert.rentalPrice}</CarTitle>  
+            </div>
+        </TitleContainer>
+        <DescriptionContainer>
+            <CarDescription> {advert.city}  |  {advert.country}  |  {advert.rentalCompany}  |  {advert.carClass}  |  {advert.type}  |  {advert.model}  |  {advert.id}  |  {advert.functionalities} </CarDescription>
             
-        </div>
+        </DescriptionContainer>
         
 
-        <button type="button">Load more</button>
+        <LearnMoreBtn type="button" onClick={openModal}>Learn more</LearnMoreBtn>
+        <Modal
+                isOpen={isModalOpen}
+                onRequestClose={closeModal}
+                overlayClassName={'modal-overlay'}
+                className={'modal-content'}
+                closeTimeoutMS={300}
+              >
+        <AdvertDetailsModal advert={advert} closeModal={closeModal} />
+            </Modal>
     </CardContainer>
-    
  )   
 }
+
+

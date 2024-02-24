@@ -6,6 +6,7 @@ import { GlobalStyle } from 'GlobalStyles';
 import { Provider } from 'react-redux';
 import { persistor, store } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
+
 // import './index.css';
 
 const theme = {
@@ -14,7 +15,7 @@ const theme = {
     header: '#153834',
     backgraund: '#fff',
     active:'#c70e38',
-    text:'#232323',
+    colorwerbs:'#121417',
     input:'#edb234',
     acent:'#0B44CD',
   },
@@ -23,7 +24,6 @@ const theme = {
     m: '12px',
   },
 }
-
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
